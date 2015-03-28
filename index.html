@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
     <script src="build/react.js"></script>
     <script src="build/JSXTransformer.js"></script>
   </head>
   <body>
     <div id="main"></div>
+    <div class="container">
+      <div class="game-frame" class="row">
+        <div id="upper">
+          <div id="stars" class="col-sm-5">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <div id="equal" class="col-sm-2">
+            =
+          </div>
+          <div id="display" class="col-sm-5">
+          </div>
+        </div>
+        <div id="button">
+          <button type="button" class="btn btn-default">Draw</button>
+        </div>
+        <div id="lower" class="row">
+          <span class="number">1</span>
+          <span class="number">2</span>
+          <span class="number">3</span>
+        </div>
+      </div>
+    </div>
     <script type="text/jsx" src="main.js"></script>
   </body>
 </html>
