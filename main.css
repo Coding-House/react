@@ -11,3 +11,19 @@
   text-align: center;
   width: 1.6em;
 }
+
+.game-frame {
+  border: thin solid #444;
+}
+
+#upper, #lower {
+  margin: 2em auto;
+}
+
+#lower {
+  border-top: thin solid #666;
+}
+
+.content {
+  padding: 1em;
+}
