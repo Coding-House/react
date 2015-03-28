@@ -1,13 +1,3 @@
-// var CommentBox = React.createClass({
-//   render: function() {
-//     return (
-//       <div className="commentBox">
-//       </div>
-//     );
-//   }
-// });
-
-
 var CommentsBox = React.createClass({
   render: function() {
     return (
@@ -16,14 +6,7 @@ var CommentsBox = React.createClass({
           <UserInput />
         </form>
 
-        <div id="commentsList">
-          <div className="one-comment">
-            this is a test comment
-          </div>
-          <div className="one-comment">
-            this is a test comment
-          </div>
-        </div>
+        <CommentsList data={this.props.data} />
       </div>
     );
   }
@@ -40,7 +23,34 @@ var UserInput = React.createClass({
   }
 });
 
+var CommentsList = React.createClass({
+  render: function() {
+    var content = this.props.data.map(function(element) {
+      return (
+        <SingleComment commentText={element} />
+      );
+    });
+    return (
+      <div id="commentsList">
+        {content}
+      </div>
+    );
+  }
+});
+
+var SingleComment = React.createClass({
+  render: function() {
+    return (
+      <div className="one-comment">
+        {this.props.commentText}
+      </div>
+    );
+  }
+});
+
+var COMMENTS = ["This is the first comment", "This is the second comment"];
+
 React.render(
-  <CommentsBox />,
+  <CommentsBox data={COMMENTS} />,
   document.getElementById('main')
 );
