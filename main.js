@@ -1,12 +1,16 @@
 var Game = React.createClass({
   getInitialState: function() {
-    return {currentNumberOfStars: 0};
+    return {currentNumberOfStars: 0, currentSelectedNumbers: []};
   },
   generateRandomNumber: function() {
     return Math.floor(Math.random() * 11 + 2);
   },
   drawStars: function() {
     this.setState({currentNumberOfStars: this.generateRandomNumber()});
+  },
+  changeSelectedNumber: function(number) {
+    var newSelectedNumbers = this.state.currentSelectedNumbers.concat([number]);
+    this.setState({currentSelectedNumbers: newSelectedNumbers});
   },
   render: function() {
     return (
@@ -21,6 +25,7 @@ var Game = React.createClass({
             =
           </div>
           <div id="display" className="col-sm-5">
+            <SelectedNumbers selectedNumbers={this.state.currentSelectedNumbers} />
           </div>
         </div>
         <div id="button" className="row">
@@ -29,11 +34,7 @@ var Game = React.createClass({
           </div>
         </div>
         <div id="lower" className="row">
-          <div className="col-sm-12 content text-center">
-            <span className="number">1</span>
-            <span className="number">2</span>
-            <span className="number">3</span>
-          </div>
+          <NumbersFrame changeSelectedNumbers={this.changeSelectedNumber} />
         </div>
       </div>
     );
@@ -51,6 +52,40 @@ var StarsFrame = React.createClass({
 
     return (
       <div>
+        {content}
+      </div>
+    );
+  }
+});
+
+var NumbersFrame = React.createClass({
+  selectNumber: function(clickedNumber) {
+    this.props.changeSelectedNumbers(clickedNumber);
+  },
+  render: function() {
+    var component = this;
+    var content = [1,2,3,4,5,6,7,8,9].map(function(e, i) {
+      return (
+        <span className="number" key={i} onClick={component.selectNumber.bind('', e)}>{e}</span>
+      )
+    });
+    return (
+      <div className="col-sm-12 content text-center">
+        {content}
+      </div>
+    );
+  }
+});
+
+var SelectedNumbers = React.createClass({
+  render: function() {
+    var content = this.props.selectedNumbers.map(function(e, i) {
+      return (
+        <span className="number" key={i}>{e}</span>
+      )
+    });
+    return (
+      <div className="content text-center">
         {content}
       </div>
     );
